@@ -17,6 +17,7 @@ services:
       - openclaw-data:/app/backend/data
       - ./memory:/app/memory:ro
       - ./skills:/app/skills:ro
+      - ./tools:/app/tools:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
