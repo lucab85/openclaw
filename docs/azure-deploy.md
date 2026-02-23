@@ -152,6 +152,8 @@ curl -I http://localhost:3000
 
 Open: `http://<PUBLIC_IP>:3000`
 
+> Open WebUI listens on port 8080 inside the container. Docker maps it to port 3000 externally.
+
 ---
 
 ## 8) Troubleshooting (80/20)

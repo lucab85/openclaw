@@ -1,18 +1,27 @@
 services:
   openclaw:
-    image: ${OPENCLAW_IMAGE:-openclaw/openclaw:latest}
+    image: ghcr.io/open-webui/open-webui:main
     container_name: openclaw
     restart: unless-stopped
     ports:
-      - "${OPENCLAW_PORT:-3000}:3000"
+      - "${OPENCLAW_PORT:-3000}:8080"
     env_file:
       - .env
+    environment:
+      - OPENAI_API_BASE_URLS=${MODEL_API_URL:-https://models.inference.ai.azure.com}/v1
+      - OPENAI_API_KEYS=${MODEL_API_KEY}
+      - DEFAULT_MODELS=${MODEL_NAME:-claude-opus-4-6-20250219}
+      - WEBUI_AUTH=false
     volumes:
+      - openclaw-data:/app/backend/data
       - ./memory:/app/memory:ro
       - ./skills:/app/skills:ro
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 15s
+
+volumes:
+  openclaw-data:
