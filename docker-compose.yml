@@ -1,0 +1,18 @@
+services:
+  openclaw:
+    image: ${OPENCLAW_IMAGE:-openclaw/openclaw:latest}
+    container_name: openclaw
+    restart: unless-stopped
+    ports:
+      - "${OPENCLAW_PORT:-3000}:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./memory:/app/memory:ro
+      - ./skills:/app/skills:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

@@ -10,16 +10,22 @@ This repo contains the minimal "production-shaped" templates used in the 1-hour 
 - `memory/operating_rules.md` — safety rules and tool boundaries
 - `skills/run_daily_brief.skill.md` — end-to-end workflow scaffold
 - `demos/` — copy/paste prompts + "what good looks like" output
+- `docker-compose.yml` — one-command deploy
+- `docs/azure-deploy.md` — full Azure VM walkthrough
 
 ## Safety first
 ✅ Do **not** commit secrets.  
-Keep API keys in environment variables / a secrets manager.
+Keep API keys in `.env` (excluded via `.gitignore`).  
+Copy `.env.example` → `.env` and fill in your values.
 
-## Quick start
-1) Start OpenClaw (local Docker or VM)
-2) Load memory files from `/memory`
-3) Add the skill from `/skills`
-4) Run: **`run_daily_brief for today (draft only)`**
+## Quick start (Docker Compose)
+1) Clone this repo
+2) `cp .env.example .env` and fill in your API keys
+3) `docker compose up -d`
+4) Open `http://localhost:3000`
+5) Load memory files, add the skill, run: **`run_daily_brief for today (draft only)`**
+
+For a full Azure VM deploy, see [docs/azure-deploy.md](docs/azure-deploy.md).
 
 ## License
 MIT (see LICENSE)
