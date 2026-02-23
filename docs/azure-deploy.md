@@ -100,7 +100,16 @@ cp .env.example .env
 nano .env
 ```
 
-Fill in your real API keys. **Never commit `.env`** — it's in `.gitignore`.
+Fill in your real values:
+
+| Variable | Value | Where to get it |
+|----------|-------|------------------|
+| `MODEL_PROVIDER` | `github` | pre-filled |
+| `MODEL_API_URL` | `https://models.inference.ai.azure.com` | pre-filled |
+| `MODEL_API_KEY` | `ghp_xxxxxxxxx` | [GitHub Settings → Tokens](https://github.com/settings/tokens) — enable **Models** permission |
+| `MODEL_NAME` | `claude-opus-4-6-20250219` | Claude Opus 4.6 via GitHub Models |
+
+**Never commit `.env`** — it's in `.gitignore`.
 
 ---
 
